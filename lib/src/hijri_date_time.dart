@@ -140,9 +140,10 @@ class HijriDateTime {
   }
 
   HijriDateTime updateAdjustments(Map<int, int> adjustments) {
-    final gregorianDateTime = toGregorian();
     _adjustments = Map.from(_adjustments);
     _adjustments.addAll(adjustments);
+    _hijriService = _HijriService(_adjustments);
+    final gregorianDateTime = toGregorian();
     final newHijriDateTime = HijriDateTime.fromGregorian(gregorianDateTime,
         adjustments: _adjustments);
 

@@ -16,7 +16,6 @@ void logHijriDebug(DateTime date, Map<int, int> adjustments) {
 }
 
 void main() {
-
   group('Known Hijri Adjustments Tests', () {
     group('1424 AH Tests', () {
       test('1 Ramadan 1424 - With and Without Adjustment', () {
@@ -38,6 +37,13 @@ void main() {
         expect(withAdj.year, equals(1424));
         expect(withAdj.month, equals(9)); // Ramadan
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1424));
+        expect(updatedHijri.month, equals(9)); // Ramadan
+        expect(updatedHijri.day, equals(1));
       });
     });
 
@@ -61,6 +67,13 @@ void main() {
         expect(withAdj.year, equals(1425));
         expect(withAdj.month, equals(10)); // Shawwal
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1425));
+        expect(updatedHijri.month, equals(10)); // Shawwal
+        expect(updatedHijri.day, equals(1));
       });
 
       test('1 Dhul Hijjah 1425 - With and Without Adjustment', () {
@@ -82,6 +95,13 @@ void main() {
         expect(withAdj.year, equals(1425));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1425));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(1));
       });
 
       test('10 Dhul Hijjah 1425 - With and Without Adjustment', () {
@@ -103,6 +123,13 @@ void main() {
         expect(withAdj.year, equals(1425));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(10));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1425));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(10));
       });
     });
 
@@ -126,6 +153,13 @@ void main() {
         expect(withAdj.year, equals(1427));
         expect(withAdj.month, equals(9)); // Ramadan
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1427));
+        expect(updatedHijri.month, equals(9)); // Ramadan
+        expect(updatedHijri.day, equals(1));
       });
 
       test('1 Dhul Hijjah 1427 - With and Without Adjustment', () {
@@ -147,6 +181,13 @@ void main() {
         expect(withAdj.year, equals(1427));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1427));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(1));
       });
 
       test('10 Dhul Hijjah 1427 - With and Without Adjustment', () {
@@ -168,6 +209,13 @@ void main() {
         expect(withAdj.year, equals(1427));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(10));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1427));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(10));
       });
     });
 
@@ -191,6 +239,13 @@ void main() {
         expect(withAdj.year, equals(1428));
         expect(withAdj.month, equals(10)); // Shawwal
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1428));
+        expect(updatedHijri.month, equals(10)); // Shawwal
+        expect(updatedHijri.day, equals(1));
       });
 
       test('1 Dhul Hijjah 1428 - With and Without Adjustment', () {
@@ -212,6 +267,13 @@ void main() {
         expect(withAdj.year, equals(1428));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1428));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(1));
       });
 
       test('10 Dhul Hijjah 1428 - With and Without Adjustment', () {
@@ -233,6 +295,13 @@ void main() {
         expect(withAdj.year, equals(1428));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(10));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1428));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(10));
       });
     });
 
@@ -256,6 +325,13 @@ void main() {
         expect(withAdj.year, equals(1429));
         expect(withAdj.month, equals(10)); // Shawwal
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1429));
+        expect(updatedHijri.month, equals(10)); // Shawwal
+        expect(updatedHijri.day, equals(1));
       });
     });
 
@@ -279,6 +355,13 @@ void main() {
         expect(withAdj.year, equals(1433));
         expect(withAdj.month, equals(1)); // Muharram
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1433));
+        expect(updatedHijri.month, equals(1)); // Muharram
+        expect(updatedHijri.day, equals(1));
       });
     });
 
@@ -302,6 +385,13 @@ void main() {
         expect(withAdj.year, equals(1434));
         expect(withAdj.month, equals(9)); // Ramadan
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1434));
+        expect(updatedHijri.month, equals(9)); // Ramadan
+        expect(updatedHijri.day, equals(1));
       });
     });
 
@@ -325,6 +415,13 @@ void main() {
         expect(withAdj.year, equals(1435));
         expect(withAdj.month, equals(1)); // Muharram
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1435));
+        expect(updatedHijri.month, equals(1)); // Muharram
+        expect(updatedHijri.day, equals(1));
       });
 
       test('1 Ramadan 1435 - With and Without Adjustment', () {
@@ -346,6 +443,13 @@ void main() {
         expect(withAdj.year, equals(1435));
         expect(withAdj.month, equals(9)); // Ramadan
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1435));
+        expect(updatedHijri.month, equals(9)); // Ramadan
+        expect(updatedHijri.day, equals(1));
       });
     });
 
@@ -369,6 +473,13 @@ void main() {
         expect(withAdj.year, equals(1436));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1436));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(1));
       });
 
       test('10 Dhul Hijjah 1436 - With and Without Adjustment', () {
@@ -390,6 +501,13 @@ void main() {
         expect(withAdj.year, equals(1436));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(10));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1436));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(10));
       });
     });
 
@@ -413,6 +531,13 @@ void main() {
         expect(withAdj.year, equals(1437));
         expect(withAdj.month, equals(1)); // Muharram
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1437));
+        expect(updatedHijri.month, equals(1)); // Muharram
+        expect(updatedHijri.day, equals(1));
       });
 
       test('1 Dhul Hijjah 1437 - With and Without Adjustment', () {
@@ -434,6 +559,13 @@ void main() {
         expect(withAdj.year, equals(1437));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1437));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(1));
       });
 
       test('10 Dhul Hijjah 1437 - With and Without Adjustment', () {
@@ -455,6 +587,13 @@ void main() {
         expect(withAdj.year, equals(1437));
         expect(withAdj.month, equals(12)); // Dhul Hijjah
         expect(withAdj.day, equals(10));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1437));
+        expect(updatedHijri.month, equals(12)); // Dhul Hijjah
+        expect(updatedHijri.day, equals(10));
       });
     });
 
@@ -478,6 +617,13 @@ void main() {
         expect(withAdj.year, equals(1439));
         expect(withAdj.month, equals(9)); // Ramadan
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1439));
+        expect(updatedHijri.month, equals(9)); // Ramadan
+        expect(updatedHijri.day, equals(1));
       });
     });
 
@@ -501,6 +647,13 @@ void main() {
         expect(withAdj.year, equals(1443));
         expect(withAdj.month, equals(1)); // Muharram
         expect(withAdj.day, equals(1));
+
+        // With updateAdjustments
+        final updatedHijri = withoutAdj.updateAdjustments(knownAdjustments);
+        logHijriDebug(dateWithout, knownAdjustments);
+        expect(updatedHijri.year, equals(1443));
+        expect(updatedHijri.month, equals(1)); // Muharram
+        expect(updatedHijri.day, equals(1));
       });
     });
   });
