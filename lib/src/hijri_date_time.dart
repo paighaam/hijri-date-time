@@ -69,7 +69,7 @@ class HijriDateTime {
     final int second = 0,
     final int millisecond = 0,
     final int microsecond = 0,
-    final Map<int, int>? adjustments,
+    Map<int, int>? adjustments,
   ]) {
     _hijriService = _HijriService(adjustments ?? <int, int>{})
       ..isValidHijri(year, month, day);
