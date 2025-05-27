@@ -2,7 +2,9 @@ import 'dart:core';
 import 'dart:developer';
 
 part 'hijri_array.dart';
+
 part 'hijri_constants.dart';
+
 part 'hijri_service.dart';
 
 class HijriDateTime {
@@ -119,6 +121,38 @@ class HijriDateTime {
     return _hijriService.toGregorian(year, month, day);
   }
 
+  /// The Julian Day Number is the continuous count of days since
+  /// January 1, 4713 BCE (Julian calendar). It is used in astronomy and
+  /// calendar computations as a neutral time reference.
+  ///
+  /// CJDN – Chronological Julian Day Number
+  /// This term generally refers to the standard Julian Day Number (JDN).
+  ///
+  /// MCJDN – Modified Chronological Julian Day Number
+  /// This is typically the JDN minus 2,400,000.
+  int get jdn {
+    return _hijriService.getJdn(year, month, day);
+  }
+
+  /// Islamic Lunar Index (ILN)
+  int get iln {
+    return _hijriService.getILN(year, month);
+  }
+
+  HijriDateTime updateAdjustments(Map<int, int> adjustments) {
+    final gregorianDateTime = toGregorian();
+    _adjustments = Map.from(_adjustments);
+    _adjustments.addAll(adjustments);
+    final newHijriDateTime = HijriDateTime.fromGregorian(gregorianDateTime,
+        adjustments: _adjustments);
+
+    _year = newHijriDateTime.year;
+    _month = newHijriDateTime.month;
+    _day = newHijriDateTime.day;
+
+    return newHijriDateTime;
+  }
+
   int get weekday => _hijriService.getWeekday(year, month, day);
 
   int get monthLength => _hijriService.getDaysInMonth(year, month);
@@ -148,22 +182,14 @@ class HijriDateTime {
     return "${sign}000$absN";
   }
 
-  static String _sixDigits(int n) {
-    assert(n < -9999 || n > 9999);
-    int absN = n.abs();
-    String sign = n < 0 ? "-" : "+";
-    if (absN >= 100000) return "$sign$absN";
-    return "${sign}0$absN";
-  }
-
   static String _threeDigits(int n) {
-    if (n >= 100) return "${n}";
-    if (n >= 10) return "0${n}";
-    return "00${n}";
+    if (n >= 100) return "$n";
+    if (n >= 10) return "0$n";
+    return "00$n";
   }
 
   static String _twoDigits(int n) {
-    if (n >= 10) return "${n}";
-    return "0${n}";
+    if (n >= 10) return "$n";
+    return "0$n";
   }
 }

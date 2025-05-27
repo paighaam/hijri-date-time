@@ -17,7 +17,6 @@ class _HijriService {
 
   DateTime toGregorian(int year, int month, int day) {
     int cjdn = _getCJDN(year, month, day);
-
     return _julianToGregorian(cjdn);
   }
 
@@ -31,7 +30,6 @@ class _HijriService {
     int d = (365.25 * c).floor();
     int e = ((b - d) / 30.6001).floor();
     int day = b - d - (e * 30.6001).floor();
-    //var wd = _gMod(julianDate + 1, 7) + 1;
     int month = e - (e > 13.5 ? 13 : 1);
     int year = c - (month > 2.5 ? 4716 : 4715);
     if (year <= 0) {
@@ -40,84 +38,109 @@ class _HijriService {
     return DateTime(year, month, day);
   }
 
-  // Gregorian to Hijri Conversion Helper
+  // Gregorian to Hijri Conversion - Updated to follow HijriCalendar approach
   _HijriDateTimeRecord toHijri(DateTime dateTime) {
     final year = dateTime.year;
     final month = dateTime.month;
     final day = dateTime.day;
 
-    int cjdn = _calculateChronologicalJulianDayNumber(year, month, day);
-    int mcjdn = cjdn - 2400000;
-    int iln = _findLunaticIndex(mcjdn);
+    // Follow HijriCalendar's gregorianToHijri method
+    int m = month;
+    int y = year;
 
-    int hYear = ((iln - 1) / 12).floor() + 1;
-    int hMonth = iln - 12 * (hYear - 1);
-
-    // Get the index for Umm al-Qura calculation
-    int index = _getNewMoonIndex(hYear, hMonth) - 1;
-
-    // Modify the adjustment logic
-    int adjustment = 0;
-    if (_adjustments.containsKey(iln)) {
-      adjustment = _adjustments[iln]!; // Use the actual adjustment value
+    // append January and February to the previous year (i.e. regard March as
+    // the first month of the year in order to simplify leapday corrections)
+    if (m < 3) {
+      y -= 1;
+      m += 12;
     }
 
-    // Calculate hDay with adjustment
-    int hDay = mcjdn - _ummalquraDataIndex(index)! + 1 + adjustment;
+    // determine offset between Julian and Gregorian calendar
+    int a = (y / 100).floor();
+    int jgc = a - (a / 4.0).floor() - 2;
 
-    // Handle month boundary cases
-    if (hDay > getDaysInMonth(hYear, hMonth)) {
-      hDay = 1;
+    // compute Chronological Julian Day Number (CJDN)
+    int cjdn = (365.25 * (y + 4716)).floor() +
+        (30.6001 * (m + 1)).floor() +
+        day -
+        jgc -
+        1524;
+
+    // Additional Gregorian calendar adjustment (from HijriCalendar)
+    a = ((cjdn - 1867216.25) / 36524.25).floor();
+    jgc = a - (a / 4.0).floor() + 1;
+    int b = cjdn + jgc + 1524;
+    int c = ((b - 122.1) / 365.25).floor();
+    int d = (365.25 * c).floor();
+    int adjustedMonth = ((b - d) / 30.6001).floor();
+    int adjustedDay = (b - d) - (30.6001 * adjustedMonth).floor();
+
+    if (adjustedMonth > 13) {
+      c += 1;
+      adjustedMonth -= 12;
+    }
+
+    adjustedMonth -= 1;
+    int adjustedYear = c - 4716;
+
+    // compute Modified Chronological Julian Day Number (MCJDN)
+    int mcjdn = cjdn - 2400000;
+
+    // Find the correct lunation index using HijriCalendar's approach
+    int i;
+    for (i = 0; i < _ummAlquraDateArray.length; i++) {
+      if (_ummalquraDataIndex(i)! > mcjdn) break;
+    }
+
+    // Debug prints
+    final adjPrev = _adjustments[(i - 1) + 16260];
+    final adjCurr = _adjustments[i + 16260];
+    log('mcjdn: '
+        '[33m$mcjdn[0m, '
+        '_ummalquraDataIndex(i-1): '
+        '[33m${_ummalquraDataIndex(i - 1)}[0m, adjPrev: $adjPrev, '
+        '_ummalquraDataIndex(i): '
+        '[33m${_ummalquraDataIndex(i)}[0m, adjCurr: $adjCurr');
+
+    // compute and output the Umm al-Qura calendar date
+    int iln = i + 16260;
+    int ii = ((iln - 1) / 12).floor();
+    int hYear = ii + 1;
+    int hMonth = iln - 12 * ii;
+
+    // Calculate the day taking into account adjustments
+    int baseDay = mcjdn - _ummalquraDataIndex(i - 1)! + 1;
+    int monthLength = _ummalquraDataIndex(i)! - _ummalquraDataIndex(i - 1)!;
+
+    // If the day exceeds the month length, it means we need to move to the next month
+    if (baseDay > monthLength) {
       hMonth++;
       if (hMonth > 12) {
         hMonth = 1;
         hYear++;
       }
-    } else if (hDay < 1) {
-      hMonth--;
-      if (hMonth < 1) {
-        hMonth = 12;
-        hYear--;
-      }
-      hDay = getDaysInMonth(hYear, hMonth);
+      baseDay = 1;
     }
 
-    // Debug output
+    int hDay = baseDay;
+
     log('Converted Gregorian Date: $year-$month-$day to Hijri Date: $hYear-$hMonth-$hDay');
-    log('Indices - CJDN: $cjdn, MCJDN: $mcjdn, ILN: $iln, Index: $index, Adjustment: $adjustment');
+    log('Indices - CJDN: $cjdn, MCJDN: $mcjdn, ILN: $iln, Index: $i');
+    log('Month Length: $monthLength, Base Day: $baseDay');
 
     return (year: hYear, month: hMonth, day: hDay);
   }
 
-  // Helpers for Hijri Calendar Calculations
-  int _calculateChronologicalJulianDayNumber(int year, int month, int day) {
-    if (month < 3) {
-      year -= 1;
-      month += 12;
-    }
-    int a = (year / 100).floor();
-    int jgc = a - (a / 4).floor() - 2;
-    return (365.25 * (year + 4716)).floor() +
-        (30.6001 * (month + 1)).floor() +
-        day -
-        jgc -
-        1524;
-  }
-
-  int _findLunaticIndex(int mcjdn) {
-    for (int i = 0; i < _ummAlquraDateArray.length; i++) {
-      if (_ummalquraDataIndex(i)! > mcjdn) return i + 16260;
-    }
-    throw ArgumentError("Date out of supported range");
-  }
-
+  // Updated to follow HijriCalendar's adjustment approach
   int? _ummalquraDataIndex(int index) {
     if (index < 0 || index >= _ummAlquraDateArray.length) {
-      throw ArgumentError("Date out of supported range");
+      throw ArgumentError(
+          "Valid date should be between 1356 AH (14 March 1937 CE) to 1500 AH (16 November 2077 CE)");
     }
 
-    if ( _adjustments.containsKey(index + 16260)) {
-      return _adjustments[index + 16260];
+    // Add the adjustment to the base value instead of replacing it
+    if (_adjustments.containsKey(index + 16260)) {
+      return _ummAlquraDateArray[index] + _adjustments[index + 16260]!;
     }
 
     return _ummAlquraDateArray[index];
@@ -133,9 +156,7 @@ class _HijriService {
 
   int _getCJDN(int year, int month, int day) {
     int index = _getNewMoonIndex(year, month);
-
     int mcjdn = _getMCJDN(day, index);
-
     return mcjdn + 2400000;
   }
 
@@ -144,12 +165,21 @@ class _HijriService {
   }
 
   int _getNewMoonIndex(int year, int month) {
-    return getILN(year, month) - 16260;
+    int cYears = year - 1;
+    int totalMonths = (cYears * 12) + 1 + (month - 1);
+    return totalMonths - 16260;
   }
 
   int _calculateWeekday(int cjdn) {
-    int wd = ((cjdn + 1) % 7).toInt();
+    // Use HijriCalendar's _gMod approach for weekday calculation
+    int wd = _gMod(cjdn + 1, 7);
     return wd == 0 ? 7 : wd;
+  }
+
+  // Helper method from HijriCalendar
+  int _gMod(int n, int m) {
+    // generalized modulo function (n mod m) also valid for negative values of n
+    return ((n % m) + m) % m;
   }
 
   int getWeekday(int year, int month, int day) {
@@ -157,69 +187,22 @@ class _HijriService {
     return _calculateWeekday(cjdn);
   }
 
+  // Updated to follow HijriCalendar's getDaysInMonth approach
   int getDaysInMonth(int year, int month) {
-    // Calculate the array index for the current month, following the established pattern.
-    int currentIndex = _getNewMoonIndex(year, month) - 1;
-
-    // Get the (adjusted) MCJDN for the start of the current month.
-    // _ummalquraDataIndex will throw an ArgumentError if 'currentIndex' is out of bounds
-    // (e.g., if _ummAlquraDateArray doesn't cover this month).
-    int startMCJDNCurrentMonth;
-    try {
-      startMCJDNCurrentMonth = _ummalquraDataIndex(currentIndex)!;
-    } catch (e) {
-      // Rethrow or handle: if current month's start can't be found, its length is undefined by this method.
-      // For example, if year/month is outside the range of _ummAlquraDateArray.
-      // The original function had fallback logic; this one requires data.
-      // print("Error getting start MCJDN for current month $year-$month: $e");
-      throw ArgumentError("Cannot determine start of current month ($year-$month) due to data range or error: $e");
-    }
-
-
-    // Determine the next Hijri month
-    int nextHijriYear, nextHijriMonth;
-    if (month == 12) {
-      nextHijriYear = year + 1;
-      nextHijriMonth = 1;
-    } else {
-      nextHijriYear = year;
-      nextHijriMonth = month + 1;
-    }
-
-    // Calculate the array index for the next month.
-    int nextIndex = _getNewMoonIndex(nextHijriYear, nextHijriMonth) - 1;
-
-    // Get the (adjusted) MCJDN for the start of the next month.
-    // _ummalquraDataIndex will throw if 'nextIndex' is out of bounds.
-    // This is crucial: if the next month is outside the data array's range,
-    // we cannot accurately determine the current month's length using this method.
-    int startMCJDNNextMonth;
-    try {
-      startMCJDNNextMonth = _ummalquraDataIndex(nextIndex)!;
-    } catch (e) {
-      // If the next month's start can't be determined, the length of the current month
-      // (which depends on adjustments up to the next month's start) cannot be calculated this way.
-      // The original function would return a static 29/30. This version would error.
-      // This is a design choice: strict adherence to adjustment-based calculation vs. fallback.
-      // print("Error getting start MCJDN for next month $nextHijriYear-$nextHijriMonth: $e");
-      throw ArgumentError("Cannot determine start of next month ($nextHijriYear-$nextHijriMonth) to calculate length of ($year-$month) due to data range or error: $e");
-    }
-
-
-    // The number of days in the current month is the difference between the start MCJDN of the next month
-    // and the start MCJDN of the current month.
-    return startMCJDNNextMonth - startMCJDNCurrentMonth;
+    int i = _getNewMoonIndex(year, month);
+    return _ummalquraDataIndex(i)! - _ummalquraDataIndex(i - 1)!;
   }
 
-  // Hijri Date Validation
+  // Hijri Date Validation - simplified to match HijriCalendar
   void isValidHijri(int year, int month, int day) {
-    if (year < 1 || year > 1500) {
-      throw ArgumentError("Hijri year out of supported range (1-1500)");
-    }
     if (month < 1 || month > 12) {
       throw ArgumentError("Hijri month must be between 1 and 12");
     }
-    if (day < 1 || day > getDaysInMonth(year, month)) {
+    if (day < 1 || day > 30) {
+      throw ArgumentError("Hijri day must be between 1 and 30");
+    }
+    // Additional validation: check if day is valid for the specific month
+    if (day > getDaysInMonth(year, month)) {
       throw ArgumentError(
           "Day $day is not valid for month $month in year $year");
     }

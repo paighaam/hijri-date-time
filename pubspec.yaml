@@ -5,6 +5,13 @@ repository: https://github.com/paighaam/hijri-date-time
 homepage: https://github.com/paighaam/hijri-date-time
 documentation: https://github.com/paighaam/hijri-date-time/wiki
 
+topics:
+  - hijri
+  - islamic-calendar
+  - islamic
+  - calendar
+  - date
+
 environment:
   sdk: ^3.0.0
   flutter: ">=1.17.0"
