@@ -1,21 +1,25 @@
-sealed class HijriAdjustmentConfiguration {
-  const HijriAdjustmentConfiguration({this.adjustments = const <int, int>{}});
+part 'hijri_global_adjustments.dart';
+
+sealed class AdjustmentConfiguration {
+  const AdjustmentConfiguration({this.adjustments = const <int, int>{}});
 
   final Map<int, int> adjustments;
 }
 
-class DefaultAdjustmentConfiguration extends HijriAdjustmentConfiguration {
-  const DefaultAdjustmentConfiguration({
+class DefaultHijriAdjustmentConfiguration extends AdjustmentConfiguration {
+  const DefaultHijriAdjustmentConfiguration({
     this.adjustments = const <int, int>{},
   }) : super(adjustments: adjustments);
 
+  @override
   final Map<int, int> adjustments;
 }
 
-class KnownAdjustmentConfiguration extends HijriAdjustmentConfiguration {
-  const KnownAdjustmentConfiguration({required super.adjustments});
+class GlobalHijriAdjustmentConfiguration extends AdjustmentConfiguration {
+  const GlobalHijriAdjustmentConfiguration()
+      : super(adjustments: globalHijriAdjustments);
 }
 
-class IndiaAdjustmentConfiguration extends HijriAdjustmentConfiguration {
-  const IndiaAdjustmentConfiguration({required super.adjustments});
+class IndiaHijriAdjustmentConfiguration extends AdjustmentConfiguration {
+  const IndiaHijriAdjustmentConfiguration({required super.adjustments});
 }

@@ -1,11 +1,14 @@
 import 'dart:core';
 import 'dart:developer';
 
-part 'hijri_array.dart';
+import 'package:hijri_date_time/src/adjustment_configuration/hijri_adjustment_configuration.dart';
 
 part 'hijri_constants.dart';
 
 part 'hijri_service.dart';
+
+const _defaultHijriAdjustmentConfiguration =
+    DefaultHijriAdjustmentConfiguration();
 
 class HijriDateTime {
   static late _HijriService _hijriService;
@@ -19,7 +22,8 @@ class HijriDateTime {
     final int second = 0,
     final int millisecond = 0,
     final int microsecond = 0,
-    final Map<int, int>? adjustments,
+    final AdjustmentConfiguration adjustmentConfiguration =
+        _defaultHijriAdjustmentConfiguration,
   ]) {
     _year = year;
     _month = month;
@@ -29,7 +33,7 @@ class HijriDateTime {
     _second = second;
     _millisecond = millisecond;
     _microsecond = microsecond;
-    _adjustments = adjustments ?? <int, int>{};
+    _adjustmentConfiguration = adjustmentConfiguration;
   }
 
   late int _year;
@@ -40,7 +44,7 @@ class HijriDateTime {
   late int _second;
   late int _millisecond;
   late int _microsecond;
-  late Map<int, int> _adjustments;
+  late AdjustmentConfiguration _adjustmentConfiguration;
 
   int get year => _year;
 
@@ -58,7 +62,8 @@ class HijriDateTime {
 
   int get microsecond => _microsecond;
 
-  Map<int, int> get adjustments => _adjustments;
+  AdjustmentConfiguration get adjustmentConfiguration =>
+      _adjustmentConfiguration;
 
   factory HijriDateTime(
     final int year, [
@@ -69,10 +74,15 @@ class HijriDateTime {
     final int second = 0,
     final int millisecond = 0,
     final int microsecond = 0,
-    Map<int, int>? adjustments,
+    final AdjustmentConfiguration adjustmentConfiguration =
+        _defaultHijriAdjustmentConfiguration,
   ]) {
-    _hijriService = _HijriService(adjustments ?? <int, int>{})
-      ..isValidHijri(year, month, day);
+    _hijriService = _HijriService(adjustmentConfiguration);
+
+    _hijriService.isValidHijri(year, month, day);
+
+    _setHijriAdjustmentConfiguration(adjustmentConfiguration);
+
     return HijriDateTime._(
       year,
       month,
@@ -82,25 +92,33 @@ class HijriDateTime {
       second,
       millisecond,
       microsecond,
-      adjustments,
+      adjustmentConfiguration,
     );
   }
 
-  factory HijriDateTime.now({Map<int, int>? adjustments}) {
-    _hijriService = _HijriService(adjustments ?? <int, int>{});
+  factory HijriDateTime.now({
+    AdjustmentConfiguration adjustmentConfiguration =
+        _defaultHijriAdjustmentConfiguration,
+  }) {
+    _hijriService = _HijriService(adjustmentConfiguration);
+
+    _setHijriAdjustmentConfiguration(adjustmentConfiguration);
 
     final now = DateTime.now();
     return HijriDateTime.fromGregorian(
       now,
-      adjustments: adjustments ?? <int, int>{},
+      adjustmentConfiguration: adjustmentConfiguration,
     );
   }
 
   factory HijriDateTime.fromGregorian(
     DateTime dateTime, {
-    Map<int, int> adjustments = const {},
+    AdjustmentConfiguration adjustmentConfiguration =
+        _defaultHijriAdjustmentConfiguration,
   }) {
-    _hijriService = _HijriService(adjustments);
+    _hijriService = _HijriService(adjustmentConfiguration);
+
+    _setHijriAdjustmentConfiguration(adjustmentConfiguration);
 
     final hijriRecord = _hijriService.toHijri(dateTime);
 
@@ -113,7 +131,7 @@ class HijriDateTime {
       dateTime.second,
       dateTime.millisecond,
       dateTime.microsecond,
-      adjustments,
+      adjustmentConfiguration,
     );
   }
 
@@ -139,13 +157,20 @@ class HijriDateTime {
     return _hijriService.getILN(year, month);
   }
 
-  HijriDateTime updateAdjustments(Map<int, int> adjustments) {
-    _adjustments = Map.from(_adjustments);
-    _adjustments.addAll(adjustments);
-    _hijriService = _HijriService(_adjustments);
+  HijriDateTime updateAdjustmentConfiguration(
+    AdjustmentConfiguration adjustmentConfiguration,
+  ) {
+    _adjustmentConfiguration = adjustmentConfiguration;
+    _hijriService = _HijriService(_adjustmentConfiguration);
+
+    _setHijriAdjustmentConfiguration(_adjustmentConfiguration);
+
     final gregorianDateTime = toGregorian();
-    final newHijriDateTime = HijriDateTime.fromGregorian(gregorianDateTime,
-        adjustments: _adjustments);
+
+    final newHijriDateTime = HijriDateTime.fromGregorian(
+      gregorianDateTime,
+      adjustmentConfiguration: _adjustmentConfiguration,
+    );
 
     _year = newHijriDateTime.year;
     _month = newHijriDateTime.month;
@@ -159,6 +184,17 @@ class HijriDateTime {
   int get monthLength => _hijriService.getDaysInMonth(year, month);
 
   // Add utility functions like: difference, isAfter, isBefore,
+
+  static void _setHijriAdjustmentConfiguration(
+      AdjustmentConfiguration configuration) {
+    switch (configuration) {
+      case DefaultHijriAdjustmentConfiguration():
+      case GlobalHijriAdjustmentConfiguration():
+        break;
+      case IndiaHijriAdjustmentConfiguration():
+        _hijriService.updateUmmAlQuraDataForIndia();
+    }
+  }
 
   @override
   String toString() {

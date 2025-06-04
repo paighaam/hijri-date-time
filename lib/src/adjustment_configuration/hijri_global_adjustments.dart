@@ -1,6 +1,8 @@
+part of 'hijri_adjustment_configuration.dart';
+
 // // Global adjustments map based on https://webspace.science.uu.nl/~gent0113/islam/ummalqura.htm
 // data with actual ILN values
-final knownAdjustments = {
+const globalHijriAdjustments = {
   // 1424 - 1 Ramadan adjustment
   17084: 1, // 27 Oct 2003 instead of 26 Oct 2003
 
