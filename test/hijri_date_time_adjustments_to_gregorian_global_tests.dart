@@ -5,7 +5,7 @@ import 'package:hijri_date_time/src/adjustment_configuration/hijri_adjustment_co
 void main() {
   const globalAdjustments = GlobalHijriAdjustmentConfiguration();
 
-  group('Known Adjustments to Gregorian Tests', () {
+  group('Known Global Adjustments to Gregorian Tests', () {
     test('1424 - 1 Ramadan adjustment', () {
       // Without adjustment
       var hijriDateNoAdj = HijriDateTime(1424, 9, 1);
@@ -23,7 +23,8 @@ void main() {
       expect(gregDate.day, equals(27)); // Adjusted from 26 Oct 2003
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2003));
       expect(updatedGregDate.month, equals(10));
@@ -48,7 +49,8 @@ void main() {
       expect(gregDate.day, equals(13)); // Adjusted from 14 Nov 2004
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2004));
       expect(updatedGregDate.month, equals(11));
@@ -70,7 +72,8 @@ void main() {
       expect(gregDate.day, equals(11)); // Adjusted from 12 Jan 2005
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2005));
       expect(updatedGregDate.month, equals(1));
@@ -92,7 +95,8 @@ void main() {
       expect(gregDate.day, equals(20)); // Adjusted from 21 Jan 2005
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2005));
       expect(updatedGregDate.month, equals(1));
@@ -117,7 +121,8 @@ void main() {
       expect(gregDate.day, equals(23)); // Adjusted from 24 Sep 2006
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2006));
       expect(updatedGregDate.month, equals(9));
@@ -139,7 +144,8 @@ void main() {
       expect(gregDate.day, equals(21)); // Adjusted from 22 Dec 2006
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2006));
       expect(updatedGregDate.month, equals(12));
@@ -161,7 +167,8 @@ void main() {
       expect(gregDate.day, equals(30)); // Adjusted from 31 Dec 2006
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2006));
       expect(updatedGregDate.month, equals(12));
@@ -186,7 +193,8 @@ void main() {
       expect(gregDate.day, equals(12)); // Adjusted from 13 Oct 2007
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2007));
       expect(updatedGregDate.month, equals(10));
@@ -208,7 +216,8 @@ void main() {
       expect(gregDate.day, equals(10)); // Adjusted from 11 Dec 2007
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2007));
       expect(updatedGregDate.month, equals(12));
@@ -230,7 +239,8 @@ void main() {
       expect(gregDate.day, equals(19)); // Adjusted from 20 Dec 2007
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2007));
       expect(updatedGregDate.month, equals(12));
@@ -254,7 +264,8 @@ void main() {
       expect(gregDate.day, equals(30)); // Adjusted from 1 Oct 2008
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2008));
       expect(updatedGregDate.month, equals(9));
@@ -278,7 +289,8 @@ void main() {
       expect(gregDate.day, equals(27)); // Adjusted from 26 Nov 2011
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2011));
       expect(updatedGregDate.month, equals(11));
@@ -302,7 +314,8 @@ void main() {
       expect(gregDate.day, equals(10)); // Adjusted from 9 Jul 2013
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2013));
       expect(updatedGregDate.month, equals(7));
@@ -327,7 +340,8 @@ void main() {
       expect(gregDate.day, equals(5)); // Adjusted from 4 Nov 2013
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2013));
       expect(updatedGregDate.month, equals(11));
@@ -349,7 +363,8 @@ void main() {
       expect(gregDate.day, equals(29)); // Adjusted from 28 Jun 2014
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2014));
       expect(updatedGregDate.month, equals(6));
@@ -374,7 +389,8 @@ void main() {
       expect(gregDate.day, equals(15)); // Adjusted from 14 Sep 2015
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2015));
       expect(updatedGregDate.month, equals(9));
@@ -396,7 +412,8 @@ void main() {
       expect(gregDate.day, equals(24)); // Adjusted from 23 Sep 2015
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2015));
       expect(updatedGregDate.month, equals(9));
@@ -421,7 +438,8 @@ void main() {
       expect(gregDate.day, equals(15)); // Adjusted from 14 Oct 2015
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2015));
       expect(updatedGregDate.month, equals(10));
@@ -443,7 +461,8 @@ void main() {
       expect(gregDate.day, equals(3)); // Adjusted from 2 Sep 2016
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2016));
       expect(updatedGregDate.month, equals(9));
@@ -465,7 +484,8 @@ void main() {
       expect(gregDate.day, equals(12)); // Adjusted from 11 Sep 2016
 
       // With updateAdjustments
-      updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2016));
       expect(updatedGregDate.month, equals(9));
@@ -489,7 +509,8 @@ void main() {
       expect(gregDate.day, equals(17)); // Adjusted from 16 May 2018
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2018));
       expect(updatedGregDate.month, equals(5));
@@ -513,7 +534,8 @@ void main() {
       expect(gregDate.day, equals(10)); // Adjusted from 9 Aug 2021
 
       // With updateAdjustments
-      var updatedHijriDate = hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
+      var updatedHijriDate =
+          hijriDateNoAdj.updateAdjustmentConfiguration(globalAdjustments);
       var updatedGregDate = updatedHijriDate.toGregorian();
       expect(updatedGregDate.year, equals(2021));
       expect(updatedGregDate.month, equals(8));

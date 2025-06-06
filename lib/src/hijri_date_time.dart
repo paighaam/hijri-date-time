@@ -5,16 +5,16 @@ import 'package:hijri_date_time/src/adjustment_configuration/hijri_adjustment_co
 
 part 'hijri_constants.dart';
 
+part 'hijri_date_time_array.dart';
+
 part 'hijri_service.dart';
 
 const _defaultHijriAdjustmentConfiguration =
     DefaultHijriAdjustmentConfiguration();
 
 class HijriDateTime {
-  static late _HijriService _hijriService;
-
   HijriDateTime._(
-    final int year, [
+    final int year, {
     final int month = 1,
     final int day = 1,
     final int hour = 0,
@@ -24,7 +24,8 @@ class HijriDateTime {
     final int microsecond = 0,
     final AdjustmentConfiguration adjustmentConfiguration =
         _defaultHijriAdjustmentConfiguration,
-  ]) {
+    required _HijriService hijriService,
+  }) {
     _year = year;
     _month = month;
     _day = day;
@@ -34,6 +35,7 @@ class HijriDateTime {
     _millisecond = millisecond;
     _microsecond = microsecond;
     _adjustmentConfiguration = adjustmentConfiguration;
+    _hijriService = hijriService;
   }
 
   late int _year;
@@ -45,6 +47,7 @@ class HijriDateTime {
   late int _millisecond;
   late int _microsecond;
   late AdjustmentConfiguration _adjustmentConfiguration;
+  late _HijriService _hijriService;
 
   int get year => _year;
 
@@ -77,22 +80,21 @@ class HijriDateTime {
     final AdjustmentConfiguration adjustmentConfiguration =
         _defaultHijriAdjustmentConfiguration,
   ]) {
-    _hijriService = _HijriService(adjustmentConfiguration);
+    final hijriService = _HijriService(adjustmentConfiguration);
 
-    _hijriService.isValidHijri(year, month, day);
-
-    _setHijriAdjustmentConfiguration(adjustmentConfiguration);
+    hijriService.isValidHijri(year, month, day);
 
     return HijriDateTime._(
       year,
-      month,
-      day,
-      hour,
-      minute,
-      second,
-      millisecond,
-      microsecond,
-      adjustmentConfiguration,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+      microsecond: microsecond,
+      adjustmentConfiguration: adjustmentConfiguration,
+      hijriService: hijriService,
     );
   }
 
@@ -100,13 +102,8 @@ class HijriDateTime {
     AdjustmentConfiguration adjustmentConfiguration =
         _defaultHijriAdjustmentConfiguration,
   }) {
-    _hijriService = _HijriService(adjustmentConfiguration);
-
-    _setHijriAdjustmentConfiguration(adjustmentConfiguration);
-
-    final now = DateTime.now();
     return HijriDateTime.fromGregorian(
-      now,
+      DateTime.now(),
       adjustmentConfiguration: adjustmentConfiguration,
     );
   }
@@ -116,22 +113,21 @@ class HijriDateTime {
     AdjustmentConfiguration adjustmentConfiguration =
         _defaultHijriAdjustmentConfiguration,
   }) {
-    _hijriService = _HijriService(adjustmentConfiguration);
+    final hijriService = _HijriService(adjustmentConfiguration);
 
-    _setHijriAdjustmentConfiguration(adjustmentConfiguration);
-
-    final hijriRecord = _hijriService.toHijri(dateTime);
+    final hijriRecord = hijriService.toHijri(dateTime);
 
     return HijriDateTime._(
       hijriRecord.year,
-      hijriRecord.month,
-      hijriRecord.day,
-      dateTime.hour,
-      dateTime.minute,
-      dateTime.second,
-      dateTime.millisecond,
-      dateTime.microsecond,
-      adjustmentConfiguration,
+      month: hijriRecord.month,
+      day: hijriRecord.day,
+      hour: dateTime.hour,
+      minute: dateTime.minute,
+      second: dateTime.second,
+      millisecond: dateTime.millisecond,
+      microsecond: dateTime.microsecond,
+      adjustmentConfiguration: adjustmentConfiguration,
+      hijriService: hijriService,
     );
   }
 
@@ -160,23 +156,36 @@ class HijriDateTime {
   HijriDateTime updateAdjustmentConfiguration(
     AdjustmentConfiguration adjustmentConfiguration,
   ) {
-    _adjustmentConfiguration = adjustmentConfiguration;
-    _hijriService = _HijriService(_adjustmentConfiguration);
+    final hijriService = _HijriService(adjustmentConfiguration);
+    final dateTime = hijriService.toGregorian(year, month, day);
 
-    _setHijriAdjustmentConfiguration(_adjustmentConfiguration);
+    final hijriRecord = hijriService.toHijri(dateTime);
 
-    final gregorianDateTime = toGregorian();
-
-    final newHijriDateTime = HijriDateTime.fromGregorian(
-      gregorianDateTime,
-      adjustmentConfiguration: _adjustmentConfiguration,
+    final updatedDateTime = HijriDateTime._(
+      hijriRecord.year,
+      month: hijriRecord.month,
+      day: hijriRecord.day,
+      hour: _hour,
+      minute: _minute,
+      second: _second,
+      millisecond: _millisecond,
+      microsecond: _microsecond,
+      adjustmentConfiguration: adjustmentConfiguration,
+      hijriService: hijriService,
     );
 
-    _year = newHijriDateTime.year;
-    _month = newHijriDateTime.month;
-    _day = newHijriDateTime.day;
+    _year = updatedDateTime.year;
+    _month = updatedDateTime.month;
+    _day = updatedDateTime.day;
+    _hour = updatedDateTime.hour;
+    _minute = updatedDateTime.minute;
+    _second = updatedDateTime.second;
+    _millisecond = updatedDateTime.millisecond;
+    _microsecond = updatedDateTime.microsecond;
+    _adjustmentConfiguration = adjustmentConfiguration;
+    _hijriService = hijriService;
 
-    return newHijriDateTime;
+    return updatedDateTime;
   }
 
   int get weekday => _hijriService.getWeekday(year, month, day);
@@ -184,17 +193,6 @@ class HijriDateTime {
   int get monthLength => _hijriService.getDaysInMonth(year, month);
 
   // Add utility functions like: difference, isAfter, isBefore,
-
-  static void _setHijriAdjustmentConfiguration(
-      AdjustmentConfiguration configuration) {
-    switch (configuration) {
-      case DefaultHijriAdjustmentConfiguration():
-      case GlobalHijriAdjustmentConfiguration():
-        break;
-      case IndiaHijriAdjustmentConfiguration():
-        _hijriService.updateUmmAlQuraDataForIndia();
-    }
-  }
 
   @override
   String toString() {
