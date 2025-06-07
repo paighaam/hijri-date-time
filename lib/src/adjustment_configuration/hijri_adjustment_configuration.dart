@@ -1,4 +1,5 @@
 part 'hijri_global_adjustments.dart';
+part 'hijri_india_adjustments.dart';
 
 sealed class AdjustmentConfiguration {
   const AdjustmentConfiguration({this.adjustments = const <int, int>{}});
