@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hijri_date_time/hijri_date_time.dart';
-import 'package:hijri_date_time/src/adjustment_configuration/hijri_adjustment_configuration.dart';
 
 void main() {
   const globalAdjustments = GlobalHijriAdjustmentConfiguration();

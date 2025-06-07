@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hijri_date_time/hijri_date_time.dart';
-import 'package:hijri_date_time/src/adjustment_configuration/hijri_adjustment_configuration.dart';
 
 // Helper to compute ILN for a given Hijri date (Islamic Lunar Number)
 int getILN(int year, int month) => ((year - 1) * 12) + month;
