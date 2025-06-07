@@ -12,13 +12,13 @@ void main() {
       test('1 Muharram 1421 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1421, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1421, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2000, 4, 7)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1421, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1421, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2000, 4, 6)));
       });
@@ -26,13 +26,13 @@ void main() {
       test('1 Ramadan 1421 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1421, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1421, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2000, 11, 28)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1421, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1421, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2000, 11, 27)));
       });
@@ -40,13 +40,13 @@ void main() {
       test('1 Shawwal 1421 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1421, 10, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1421, month: 10, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2000, 12, 28)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1421, 10, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1421, month: 10, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2000, 12, 27)));
       });
@@ -54,13 +54,13 @@ void main() {
       test('1 Dhul Hijjah 1421 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1421, 12, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1421, month: 12, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2001, 2, 25)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1421, 12, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1421, month: 12, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2001, 2, 24)));
       });
@@ -68,13 +68,13 @@ void main() {
       test('10 Dhul Hijjah 1421 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1421, 12, 10, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1421, month: 12, day: 10, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2001, 3, 6)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1421, 12, 10, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1421, month: 12, day: 10, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2001, 3, 5)));
       });
@@ -84,13 +84,13 @@ void main() {
       test('1 Muharram 1422 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1422, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1422, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2001, 3, 27)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1422, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1422, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2001, 3, 26)));
       });
@@ -100,13 +100,13 @@ void main() {
       test('1 Muharram 1423 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1423, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1423, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2002, 3, 16)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1423, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1423, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2002, 3, 15)));
       });
@@ -114,13 +114,13 @@ void main() {
       test('1 Ramadan 1423 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1423, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1423, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2002, 11, 7)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1423, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1423, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2002, 11, 6)));
       });
@@ -130,13 +130,13 @@ void main() {
       test('1 Ramadan 1428 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1428, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1428, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2007, 9, 14)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1428, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1428, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2007, 9, 13)));
       });
@@ -144,13 +144,13 @@ void main() {
       test('1 Shawwal 1428 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1428, 10, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1428, month: 10, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2007, 10, 14)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1428, 10, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1428, month: 10, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2007, 10, 13)));
       });
@@ -158,13 +158,13 @@ void main() {
       test('1 Dhul Hijjah 1428 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1428, 12, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1428, month: 12, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2007, 12, 12)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1428, 12, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1428, month: 12, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2007, 12, 11)));
       });
@@ -172,13 +172,13 @@ void main() {
       test('10 Dhul Hijjah 1428 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1428, 12, 10, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1428, month: 12, day: 10, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2007, 12, 21)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1428, 12, 10, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1428, month: 12, day: 10, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2007, 12, 20)));
       });
@@ -188,13 +188,13 @@ void main() {
       test('1 Muharram 1429 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1429, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1429, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2008, 1, 11)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1429, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1429, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2008, 1, 10)));
       });
@@ -204,13 +204,13 @@ void main() {
       test('1 Muharram 1430 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1430, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1430, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2008, 12, 30)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1430, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1430, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2008, 12, 29)));
       });
@@ -218,13 +218,13 @@ void main() {
       test('1 Ramadan 1430 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1430, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1430, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2009, 8, 23)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1430, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1430, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2009, 8, 22)));
       });
@@ -234,13 +234,13 @@ void main() {
       test('1 Muharram 1431 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1431, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1431, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2009, 12, 19)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1431, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1431, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2009, 12, 18)));
       });
@@ -248,13 +248,13 @@ void main() {
       test('1 Shawwal 1431 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1431, 10, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1431, month: 10, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2010, 9, 11)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1431, 10, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1431, month: 10, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2010, 9, 10)));
       });
@@ -264,13 +264,13 @@ void main() {
       test('1 Ramadan 1434 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1434, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1434, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2013, 7, 10)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1434, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1434, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2013, 7, 11)));
       });
@@ -280,13 +280,13 @@ void main() {
       test('1 Ramadan 1435 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1435, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1435, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2014, 6, 29)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1435, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1435, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2014, 6, 30)));
       });
@@ -296,13 +296,13 @@ void main() {
       test('1 Ramadan 1441 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1441, 9, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1441, month: 9, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2020, 4, 25)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1441, 9, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1441, month: 9, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2020, 4, 24)));
       });
@@ -312,13 +312,13 @@ void main() {
       test('1 Muharram 1444 - With and Without Adjustment', () {
         // Without adjustment
         final hijriWithout =
-            HijriDateTime(1444, 1, 1, 0, 0, 0, 0, 0, indiaNoAdjustments);
+            HijriDateTime(1444, month: 1, day: 1, adjustmentConfiguration: indiaNoAdjustments);
         final gregorianWithout = hijriWithout.toGregorian();
         expect(gregorianWithout, equals(DateTime(2022, 7, 31)));
 
         // With adjustment
         final hijriWith =
-            HijriDateTime(1444, 1, 1, 0, 0, 0, 0, 0, indiaAdjustments);
+            HijriDateTime(1444, month: 1, day: 1, adjustmentConfiguration: indiaAdjustments);
         final gregorianWith = hijriWith.toGregorian();
         expect(gregorianWith, equals(DateTime(2022, 7, 30)));
       });

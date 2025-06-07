@@ -9,7 +9,7 @@ void main() {
     group('1424 AH Tests', () {
       test('1 Ramadan 1424 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1424, 9, 1);
+        var hijriDateNoAdj = HijriDateTime(1424, month: 9, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2003));
         expect(gregDateNoAdj.month, equals(10));
@@ -17,7 +17,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1424, 9, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1424, month: 9, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2003));
         expect(gregDate.month, equals(10));
@@ -36,7 +36,7 @@ void main() {
     group('1425 AH Tests', () {
       test('1 Shawwal 1425 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1425, 10, 1);
+        var hijriDateNoAdj = HijriDateTime(1425, month: 10, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2004));
         expect(gregDateNoAdj.month, equals(11));
@@ -44,7 +44,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1425, 10, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1425, month: 10, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2004));
         expect(gregDate.month, equals(11));
@@ -61,7 +61,7 @@ void main() {
 
       test('1 Dhul Hijjah 1425 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1425, 12, 1);
+        var hijriDateNoAdj = HijriDateTime(1425, month: 12, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2005));
         expect(gregDateNoAdj.month, equals(1));
@@ -69,7 +69,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1425, 12, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1425, month: 12, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2005));
         expect(gregDate.month, equals(1));
@@ -86,7 +86,7 @@ void main() {
 
       test('10 Dhul Hijjah 1425 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1425, 12, 10);
+        var hijriDateNoAdj = HijriDateTime(1425, month: 12, day: 10);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2005));
         expect(gregDateNoAdj.month, equals(1));
@@ -94,7 +94,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1425, 12, 10, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1425, month: 12, day: 10, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2005));
         expect(gregDate.month, equals(1));
@@ -113,7 +113,7 @@ void main() {
     group('1427 AH Tests', () {
       test('1 Ramadan 1427 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1427, 9, 1);
+        var hijriDateNoAdj = HijriDateTime(1427, month: 9, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2006));
         expect(gregDateNoAdj.month, equals(9));
@@ -121,7 +121,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1427, 9, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1427, month: 9, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2006));
         expect(gregDate.month, equals(9));
@@ -138,7 +138,7 @@ void main() {
 
       test('1 Dhul Hijjah 1427 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1427, 12, 1);
+        var hijriDateNoAdj = HijriDateTime(1427, month: 12, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2006));
         expect(gregDateNoAdj.month, equals(12));
@@ -146,7 +146,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1427, 12, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1427, month: 12, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2006));
         expect(gregDate.month, equals(12));
@@ -163,7 +163,7 @@ void main() {
 
       test('10 Dhul Hijjah 1427 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1427, 12, 10);
+        var hijriDateNoAdj = HijriDateTime(1427, month: 12, day: 10);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2006));
         expect(gregDateNoAdj.month, equals(12));
@@ -171,7 +171,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1427, 12, 10, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1427, month: 12, day: 10, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2006));
         expect(gregDate.month, equals(12));
@@ -190,7 +190,7 @@ void main() {
     group('1428 AH Tests', () {
       test('1 Shawwal 1428 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1428, 10, 1);
+        var hijriDateNoAdj = HijriDateTime(1428, month: 10, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2007));
         expect(gregDateNoAdj.month, equals(10));
@@ -198,7 +198,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1428, 10, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1428, month: 10, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2007));
         expect(gregDate.month, equals(10));
@@ -215,7 +215,7 @@ void main() {
 
       test('1 Dhul Hijjah 1428 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1428, 12, 1);
+        var hijriDateNoAdj = HijriDateTime(1428, month: 12, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2007));
         expect(gregDateNoAdj.month, equals(12));
@@ -223,7 +223,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1428, 12, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1428, month: 12, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2007));
         expect(gregDate.month, equals(12));
@@ -240,7 +240,7 @@ void main() {
 
       test('10 Dhul Hijjah 1428 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1428, 12, 10);
+        var hijriDateNoAdj = HijriDateTime(1428, month: 12, day: 10);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2007));
         expect(gregDateNoAdj.month, equals(12));
@@ -248,7 +248,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1428, 12, 10, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1428, month: 12, day: 10, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2007));
         expect(gregDate.month, equals(12));
@@ -267,7 +267,7 @@ void main() {
     group('1429 AH Tests', () {
       test('1 Shawwal 1429 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1429, 10, 1);
+        var hijriDateNoAdj = HijriDateTime(1429, month: 10, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2008));
         expect(gregDateNoAdj.month, equals(10));
@@ -275,7 +275,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1429, 10, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1429, month: 10, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2008));
         expect(gregDate.month, equals(9));
@@ -294,7 +294,7 @@ void main() {
     group('1433 AH Tests', () {
       test('1 Muharram 1433 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1433, 1, 1);
+        var hijriDateNoAdj = HijriDateTime(1433, month: 1, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2011));
         expect(gregDateNoAdj.month, equals(11));
@@ -302,7 +302,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1433, 1, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1433, month: 1, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2011));
         expect(gregDate.month, equals(11));
@@ -321,7 +321,7 @@ void main() {
     group('1434 AH Tests', () {
       test('1 Ramadan 1434 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1434, 9, 1);
+        var hijriDateNoAdj = HijriDateTime(1434, month: 9, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2013));
         expect(gregDateNoAdj.month, equals(7));
@@ -329,7 +329,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1434, 9, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1434, month: 9, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2013));
         expect(gregDate.month, equals(7));
@@ -348,7 +348,7 @@ void main() {
     group('1435 AH Tests', () {
       test('1 Muharram 1435 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1435, 1, 1);
+        var hijriDateNoAdj = HijriDateTime(1435, month: 1, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2013));
         expect(gregDateNoAdj.month, equals(11));
@@ -356,7 +356,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1435, 1, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1435, month: 1, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2013));
         expect(gregDate.month, equals(11));
@@ -373,7 +373,7 @@ void main() {
 
       test('1 Ramadan 1435 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1435, 9, 1);
+        var hijriDateNoAdj = HijriDateTime(1435, month: 9, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2014));
         expect(gregDateNoAdj.month, equals(6));
@@ -381,7 +381,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1435, 9, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1435, month: 9, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2014));
         expect(gregDate.month, equals(6));
@@ -400,7 +400,7 @@ void main() {
     group('1436 AH Tests', () {
       test('1 Dhul Hijjah 1436 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1436, 12, 1);
+        var hijriDateNoAdj = HijriDateTime(1436, month: 12, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2015));
         expect(gregDateNoAdj.month, equals(9));
@@ -408,7 +408,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1436, 12, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1436, month: 12, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2015));
         expect(gregDate.month, equals(9));
@@ -425,7 +425,7 @@ void main() {
 
       test('10 Dhul Hijjah 1436 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1436, 12, 10);
+        var hijriDateNoAdj = HijriDateTime(1436, month: 12, day: 10);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2015));
         expect(gregDateNoAdj.month, equals(9));
@@ -433,7 +433,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1436, 12, 10, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1436, month: 12, day: 10, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2015));
         expect(gregDate.month, equals(9));
@@ -452,7 +452,7 @@ void main() {
     group('1437 AH Tests', () {
       test('1 Muharram 1437 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1437, 1, 1);
+        var hijriDateNoAdj = HijriDateTime(1437, month: 1, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2015));
         expect(gregDateNoAdj.month, equals(10));
@@ -460,7 +460,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1437, 1, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1437, month: 1, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2015));
         expect(gregDate.month, equals(10));
@@ -477,7 +477,7 @@ void main() {
 
       test('1 Dhul Hijjah 1437 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1437, 12, 1);
+        var hijriDateNoAdj = HijriDateTime(1437, month: 12, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2016));
         expect(gregDateNoAdj.month, equals(9));
@@ -485,7 +485,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1437, 12, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1437, month: 12, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2016));
         expect(gregDate.month, equals(9));
@@ -502,7 +502,7 @@ void main() {
 
       test('10 Dhul Hijjah 1437 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1437, 12, 10);
+        var hijriDateNoAdj = HijriDateTime(1437, month: 12, day: 10);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2016));
         expect(gregDateNoAdj.month, equals(9));
@@ -510,7 +510,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1437, 12, 10, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1437, month: 12, day: 10, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2016));
         expect(gregDate.month, equals(9));
@@ -529,7 +529,7 @@ void main() {
     group('1439 AH Tests', () {
       test('1 Ramadan 1439 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1439, 9, 1);
+        var hijriDateNoAdj = HijriDateTime(1439, month: 9, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2018));
         expect(gregDateNoAdj.month, equals(5));
@@ -537,7 +537,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1439, 9, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1439, month: 9, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2018));
         expect(gregDate.month, equals(5));
@@ -556,7 +556,7 @@ void main() {
     group('1443 AH Tests', () {
       test('1 Muharram 1443 - With and Without Adjustment', () {
         // Without adjustment
-        var hijriDateNoAdj = HijriDateTime(1443, 1, 1);
+        var hijriDateNoAdj = HijriDateTime(1443, month: 1, day: 1);
         var gregDateNoAdj = hijriDateNoAdj.toGregorian();
         expect(gregDateNoAdj.year, equals(2021));
         expect(gregDateNoAdj.month, equals(8));
@@ -564,7 +564,7 @@ void main() {
 
         // With adjustment
         var hijriDate =
-            HijriDateTime(1443, 1, 1, 0, 0, 0, 0, 0, globalAdjustments);
+            HijriDateTime(1443, month: 1, day: 1, adjustmentConfiguration: globalAdjustments);
         var gregDate = hijriDate.toGregorian();
         expect(gregDate.year, equals(2021));
         expect(gregDate.month, equals(8));

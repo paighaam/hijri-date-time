@@ -69,7 +69,7 @@ class HijriDateTime {
       _adjustmentConfiguration;
 
   factory HijriDateTime(
-    final int year, [
+    final int year, {
     final int month = 1,
     final int day = 1,
     final int hour = 0,
@@ -79,7 +79,7 @@ class HijriDateTime {
     final int microsecond = 0,
     final AdjustmentConfiguration adjustmentConfiguration =
         _defaultHijriAdjustmentConfiguration,
-  ]) {
+  }) {
     final hijriService = _HijriService(adjustmentConfiguration);
 
     hijriService.isValidHijri(year, month, day);
