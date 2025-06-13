@@ -16,7 +16,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-   hijri_date_time: ^1.0.0
+  hijri_date_time: ^1.1.0
 ```
 
 ## Usage
@@ -28,9 +28,9 @@ HijriDateTime provides several ways to create a date:
 ```dart
 // Create from specific Hijri date
 final hijriDate = HijriDateTime(
-   1445,
-   month: 9,
-   day: 1,
+  1445,
+  month: 9,
+  day: 1,
 ); // 1 Ramadan 1445
 
 // Create from current date
@@ -114,6 +114,33 @@ print(date.monthLength); // Number of days in the month
 final gregorian = date.toGregorian();
 ```
 
+### Utility Functions
+
+HijriDateTime provides several utility functions for date manipulation and comparison:
+
+```dart
+final date = HijriDateTime(1445, month: 9, day: 1);
+
+// Add duration
+final nextWeek = date.add(const Duration(days: 7));
+final nextMonth = date.add(const Duration(days: 29)); // Muharram has 29 days
+final nextYear = date.add(const Duration(days: 354)); // Approximate Hijri year
+
+// Subtract duration
+final lastWeek = date.subtract(const Duration(days: 7));
+final lastMonth = date.subtract(const Duration(days: 29));
+
+// Date comparison
+final otherDate = HijriDateTime(1445, month: 9, day: 15);
+final daysDifference = date.difference(otherDate); // Returns number of days between dates
+final isAfter = date.isAfter(otherDate); // Returns true if date is after otherDate
+final isBefore = date.isBefore(otherDate); // Returns true if date is before otherDate
+
+// Time components
+final dateWithTime = HijriDateTime(1445, month: 9, day: 1, hour: 10, minute: 30);
+final nextHour = dateWithTime.add(const Duration(hours: 1));
+```
+
 ### Updating Adjustments
 
 You can update the adjustment configuration for an existing date:
@@ -121,7 +148,7 @@ You can update the adjustment configuration for an existing date:
 ```dart
 final date = HijriDateTime(1445, month: 9, day: 1);
 final updatedDate = date.updateAdjustmentConfiguration(
-        GlobalHijriAdjustmentConfiguration()
+  GlobalHijriAdjustmentConfiguration()
 );
 ```
 
