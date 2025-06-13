@@ -83,7 +83,7 @@ class _HijriService {
     int c = ((b - 122.1) / 365.25).floor();
     int d = (365.25 * c).floor();
     int adjustedMonth = ((b - d) / 30.6001).floor();
-    int adjustedDay = (b - d) - (30.6001 * adjustedMonth).floor();
+    // int adjustedDay = (b - d) - (30.6001 * adjustedMonth).floor();
 
     if (adjustedMonth > 13) {
       c += 1;
@@ -91,7 +91,7 @@ class _HijriService {
     }
 
     adjustedMonth -= 1;
-    int adjustedYear = c - 4716;
+    // int adjustedYear = c - 4716;
 
     // compute Modified Chronological Julian Day Number (MCJDN)
     int mcjdn = cjdn - 2400000;
@@ -225,5 +225,198 @@ class _HijriService {
     }
 
     return newData;
+  }
+
+  HijriDateTime add(
+    Duration duration, {
+    required int year,
+    required int month,
+    required int day,
+    required int hour,
+    required int minute,
+    required int second,
+    required int millisecond,
+    required int microsecond,
+    required AdjustmentConfiguration adjustmentConfiguration,
+  }) {
+    // Convert current Hijri date to Gregorian with time components
+    final gregorianBase = toGregorian(year, month, day);
+    final gregorianDate = DateTime(
+      gregorianBase.year,
+      gregorianBase.month,
+      gregorianBase.day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
+
+    // Add the duration to Gregorian date
+    final newGregorianDate = gregorianDate.add(duration);
+
+    // Convert back to Hijri
+    final hijriRecord = toHijri(newGregorianDate);
+
+    // Create new HijriDateTime with the updated time components
+    return HijriDateTime._(
+      hijriRecord.year,
+      month: hijriRecord.month,
+      day: hijriRecord.day,
+      hour: newGregorianDate.hour,
+      minute: newGregorianDate.minute,
+      second: newGregorianDate.second,
+      millisecond: newGregorianDate.millisecond,
+      microsecond: newGregorianDate.microsecond,
+      adjustmentConfiguration: adjustmentConfiguration,
+      hijriService: this,
+    );
+  }
+
+  HijriDateTime subtract(
+    Duration duration, {
+    required int year,
+    required int month,
+    required int day,
+    required int hour,
+    required int minute,
+    required int second,
+    required int millisecond,
+    required int microsecond,
+    required AdjustmentConfiguration adjustmentConfiguration,
+  }) {
+    // Reuse add by negating the duration
+    return add(
+      -duration,
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+      microsecond: microsecond,
+      adjustmentConfiguration: adjustmentConfiguration,
+    );
+  }
+
+  int difference(
+    HijriDateTime other, {
+    required int year,
+    required int month,
+    required int day,
+    required int hour,
+    required int minute,
+    required int second,
+    required int millisecond,
+    required int microsecond,
+  }) {
+    // Convert both dates to Gregorian with time components
+    final thisGregorianBase = toGregorian(year, month, day);
+    final thisGregorian = DateTime(
+      thisGregorianBase.year,
+      thisGregorianBase.month,
+      thisGregorianBase.day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
+
+    final otherGregorianBase = toGregorian(other.year, other.month, other.day);
+    final otherGregorian = DateTime(
+      otherGregorianBase.year,
+      otherGregorianBase.month,
+      otherGregorianBase.day,
+      other.hour,
+      other.minute,
+      other.second,
+      other.millisecond,
+      other.microsecond,
+    );
+
+    // Calculate difference in days
+    return thisGregorian.difference(otherGregorian).inDays;
+  }
+
+  bool isAfter(
+    HijriDateTime other, {
+    required int year,
+    required int month,
+    required int day,
+    required int hour,
+    required int minute,
+    required int second,
+    required int millisecond,
+    required int microsecond,
+  }) {
+    // Convert both dates to Gregorian with time components
+    final thisGregorianBase = toGregorian(year, month, day);
+    final thisGregorian = DateTime(
+      thisGregorianBase.year,
+      thisGregorianBase.month,
+      thisGregorianBase.day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
+
+    final otherGregorianBase = toGregorian(other.year, other.month, other.day);
+    final otherGregorian = DateTime(
+      otherGregorianBase.year,
+      otherGregorianBase.month,
+      otherGregorianBase.day,
+      other.hour,
+      other.minute,
+      other.second,
+      other.millisecond,
+      other.microsecond,
+    );
+
+    // Compare the dates with time
+    return thisGregorian.isAfter(otherGregorian);
+  }
+
+  bool isBefore(
+    HijriDateTime other, {
+    required int year,
+    required int month,
+    required int day,
+    required int hour,
+    required int minute,
+    required int second,
+    required int millisecond,
+    required int microsecond,
+  }) {
+    // Convert both dates to Gregorian with time components
+    final thisGregorianBase = toGregorian(year, month, day);
+    final thisGregorian = DateTime(
+      thisGregorianBase.year,
+      thisGregorianBase.month,
+      thisGregorianBase.day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
+
+    final otherGregorianBase = toGregorian(other.year, other.month, other.day);
+    final otherGregorian = DateTime(
+      otherGregorianBase.year,
+      otherGregorianBase.month,
+      otherGregorianBase.day,
+      other.hour,
+      other.minute,
+      other.second,
+      other.millisecond,
+      other.microsecond,
+    );
+
+    // Compare the dates with time
+    return thisGregorian.isBefore(otherGregorian);
   }
 }
