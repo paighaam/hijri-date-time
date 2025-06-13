@@ -16,7 +16,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  hijri_date_time: ^1.0.0
+   hijri_date_time: ^1.0.0
 ```
 
 ## Usage
@@ -27,7 +27,11 @@ HijriDateTime provides several ways to create a date:
 
 ```dart
 // Create from specific Hijri date
-final hijriDate = HijriDateTime(1445, 9, 1); // 1 Ramadan 1445
+final hijriDate = HijriDateTime(
+   1445,
+   month: 9,
+   day: 1,
+); // 1 Ramadan 1445
 
 // Create from current date
 final now = HijriDateTime.now();
@@ -42,19 +46,19 @@ HijriDateTime supports different adjustment configurations to handle regional va
 
 1. **Default Configuration**
    ```dart
-   final defaultDate = HijriDateTime(1445, 9, 1,
+   final defaultDate = HijriDateTime(1445, month: 9, day: 1,
      adjustmentConfiguration: DefaultHijriAdjustmentConfiguration());
    ```
 
 2. **Global Configuration**
    ```dart
-   final globalDate = HijriDateTime(1445, 9, 1,
+   final globalDate = HijriDateTime(1445, month: 9, day: 1,
      adjustmentConfiguration: GlobalHijriAdjustmentConfiguration());
    ```
 
 3. **India Configuration**
    ```dart
-   final indiaDate = HijriDateTime(1445, 9, 1,
+   final indiaDate = HijriDateTime(1445, month: 9, day: 1,
      adjustmentConfiguration: IndiaHijriAdjustmentConfiguration(
        adjustments: indiaHijriAdjustments
      ));
@@ -90,14 +94,14 @@ int iln = ((year - 1) * 12) + month;
 You can access the ILN of any date:
 
 ```dart
-final date = HijriDateTime(1445, 9, 1);
+final date = HijriDateTime(1445, month: 9, day: 1);
 print(date.iln); // Prints the Islamic Lunar Number
 ```
 
 ### Date Properties
 
 ```dart
-final date = HijriDateTime(1445, 9, 1);
+final date = HijriDateTime(1445, month: 9, day: 1);
 
 // Access date components
 print(date.year);      // 1445
@@ -115,9 +119,9 @@ final gregorian = date.toGregorian();
 You can update the adjustment configuration for an existing date:
 
 ```dart
-final date = HijriDateTime(1445, 9, 1);
+final date = HijriDateTime(1445, month: 9, day: 1);
 final updatedDate = date.updateAdjustmentConfiguration(
-  GlobalHijriAdjustmentConfiguration()
+        GlobalHijriAdjustmentConfiguration()
 );
 ```
 
